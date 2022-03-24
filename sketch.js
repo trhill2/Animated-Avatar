@@ -14,8 +14,13 @@ var ghost;
 var speed = 10;
 
 // The is a static sprite
-var star;
-var starImg;
+// var star;
+// var starImg;
+
+// Sun
+
+var sun;
+var speed = 15;
 
 function preload() {
   starImg = loadImage('assets/fullStar.png');
@@ -26,18 +31,21 @@ function setup() {
 
   // create a sprite with dimensions
   ghost = createSprite(100, 100);
+  sun = createSprite(400, 100);
 
   // This is a *numbered* sequence of PNG files
   // create a star in the middle of the screen
-  star = createSprite(width/2, height/2);
-  star.addImage('star', starImg);
+  // star = createSprite(width/2, height/2);
+  // star.addImage('star', starImg);
 
   // We add animation to different sprites
   ghost.addAnimation('floating', 'assets/ghost_standing0001.png', 'assets/ghost_standing0007.png');
+
+  sun.addAnimation('rotate', 'assets/avatar1.png', 'assets/avatar4.png');
   
 
 
-  frameRate(30);
+  frameRate(130);
  }
 
 // Draw code goes here
@@ -52,7 +60,7 @@ function draw() {
   drawSprites();
 
   // callback function
-  ghost.overlap(star, ghostCollision);
+  // ghost.overlap(star, ghostCollision);
 }
 
 // This will reset position
@@ -60,6 +68,10 @@ function keyPressed() {
   if( key === ' ') {
     ghost.position.x = width/2;
     ghost.position.y = height/2;
+  }
+  if( key === ' ') {
+    sun.position.x = width/2;
+    sun.position.y = height/2;
   }
 }
 
@@ -77,13 +89,36 @@ function checkMovement() {
 
   // Check y movement
   if(keyIsDown(DOWN_ARROW)) {
-    ghost.velocity.y = speed;
+    sun.velocity.y = speed;
   }
   else if(keyIsDown(UP_ARROW)) {
-    ghost.velocity.y = -speed;
+    sun.velocity.y = -speed;
   }
   else {
-    ghost.velocity.y = 0;
+    sun.velocity.y = 0;
+  }
+}
+function checkMovement() {
+  // Check x movement
+  if(keyIsDown(RIGHT_ARROW)) {
+    sun.velocity.x = speed;
+  }
+  else if(keyIsDown(LEFT_ARROW)) {
+    sun.velocity.x = -speed;
+  }
+  else {
+    sun.velocity.x = 0;
+  }
+
+  // Check y movement
+  if(keyIsDown(DOWN_ARROW)) {
+    sun.velocity.y = speed;
+  }
+  else if(keyIsDown(UP_ARROW)) {
+    sun.velocity.y = -speed;
+  }
+  else {
+    sun.velocity.y = 0;
   }
 }
 
