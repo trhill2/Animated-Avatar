@@ -17,13 +17,19 @@ var speed = 10;
  var star;
  var starImg;
 
-// Sun
+// Static sprite person
+var person
+var personimg
+var person2
 
+// Sun
 var sun;
 var speed = 15;
 
 function preload() {
   starImg = loadImage('assets/fullStar.png');
+  personimg = loadImage('assets/person1 copy.png');
+  //person2 = loadImage('assets/person1copy.png');
 }
 // Setup code goes here
 function setup() {
@@ -35,8 +41,13 @@ function setup() {
 
   // This is a *numbered* sequence of PNG files
   // create a star in the middle of the screen
-  star = createSprite(width/2, height/2);
-  star.addImage('star', starImg);
+  // star = createSprite(width/2, height/2);
+  // star.addImage('star', starImg);
+
+
+
+  person = createSprite(800, 200);
+  person.addImage('person', personimg);
 
   // We add animation to different sprites
   ghost.addAnimation('floating', 'assets/ghost_standing0001.png', 'assets/ghost_standing0007.png');
@@ -61,7 +72,8 @@ function draw() {
 
   // callback function
   // ghost.overlap(star, ghostCollision);
-  sun.overlap(star, sunCollision);
+  //sun.overlap(star, sunCollision);
+  sun.overlap(person, sunCollision);
 }
 
 // This will reset position
