@@ -14,8 +14,8 @@ var ghost;
 var speed = 10;
 
 // The is a static sprite
-// var star;
-// var starImg;
+ var star;
+ var starImg;
 
 // Sun
 
@@ -31,12 +31,12 @@ function setup() {
 
   // create a sprite with dimensions
   ghost = createSprite(100, 100);
-  sun = createSprite(400, 100);
+  sun = createSprite(300, 100);
 
   // This is a *numbered* sequence of PNG files
   // create a star in the middle of the screen
-  // star = createSprite(width/2, height/2);
-  // star.addImage('star', starImg);
+  star = createSprite(width/2, height/2);
+  star.addImage('star', starImg);
 
   // We add animation to different sprites
   ghost.addAnimation('floating', 'assets/ghost_standing0001.png', 'assets/ghost_standing0007.png');
@@ -61,6 +61,7 @@ function draw() {
 
   // callback function
   // ghost.overlap(star, ghostCollision);
+  sun.overlap(star, sunCollision);
 }
 
 // This will reset position
@@ -124,9 +125,16 @@ function checkMovement() {
 
 // SpriteA is the sprite in question, spriteA will be ghost in this case
 // SpriteB is the one that it collided with
-function ghostCollision(spriteA, spriteB) {
-  ghost.position.x = 100;
-  ghost.position.y = 100;
+// function ghostCollision(spriteA, spriteB) {
+//   ghost.position.x = 100;
+//   ghost.position.y = 100;
+
+//   spriteB.remove();
+// }
+
+function sunCollision(SpriteA, spriteB) {
+  sun.position.x = 200;
+  sun.position.y = 200;
 
   spriteB.remove();
 }
